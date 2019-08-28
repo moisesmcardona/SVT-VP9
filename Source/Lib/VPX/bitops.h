@@ -17,7 +17,7 @@
 #include <assert.h>
 #include <stdint.h>
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #if defined(_M_X64) || defined(_M_IX86)
 #include <intrin.h>
 #define USE_MSC_INTRINSICS

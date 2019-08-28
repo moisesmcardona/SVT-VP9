@@ -18,7 +18,7 @@ extern "C" {
 #else
 #define EB_EXTERN
 #endif // __cplusplus
-#ifdef    _MSC_VER
+#ifdef    _WIN32
 #define FORCE_INLINE            __forceinline
 #else
 #ifdef __cplusplus
@@ -65,7 +65,7 @@ extern "C" {
 #define EB_SRC_LINE_NUM         EB_MAKESTRING( EB_STRINGIZE, __LINE__ )
 #define EB_MIN(a,b)             (((a) < (b)) ? (a) : (b))
 
-#ifdef    _MSC_VER
+#ifdef    _WIN32
 
 #define NOINLINE                __declspec ( noinline )
 #define FORCE_INLINE            __forceinline
@@ -88,7 +88,7 @@ extern "C" {
 #endif // _MSC_VER
 
     // Define Cross-Platform 64-bit fseek() and ftell()
-#ifdef _MSC_VER
+#ifdef _WIN32
     typedef __int64 Off64;
 #define fseeko64 _fseeki64
 #define ftello64 _ftelli64
@@ -147,10 +147,7 @@ extern "C" {
 
 #define    Log2f                              Log2f_SSE2
 
-#ifndef _RSIZE_T_DEFINED
-    typedef size_t Rsize;
-#define _RSIZE_T_DEFINED
-#endif  /* _RSIZE_T_DEFINED */
+typedef size_t Rsize;
 
 #ifndef _ERRNO_T_DEFINED
 #define _ERRNO_T_DEFINED
@@ -343,7 +340,7 @@ typedef enum EbIntraRefreshType
     IDR_REFRESH = 2
 } EbIntraRefreshType;
 
-#if defined(_MSC_VER)
+#if defined(_WIN32)
 #define EB_ALIGN(n) __declspec(align(n))
 #elif defined(__GNUC__)
 #define EB_ALIGN(n) __attribute__((__aligned__(n)))
@@ -546,7 +543,7 @@ extern    uint32_t          lib_semaphore_count;
 extern    uint32_t          lib_mutex_count;
 
 
-#ifdef _MSC_VER 
+#ifdef _WIN32 
 #define EB_ALLIGN_MALLOC(type, pointer, n_elements, pointer_class) \
     pointer = (type) _aligned_malloc(n_elements,ALVALUE); \
     if (pointer == (type)EB_NULL) { \

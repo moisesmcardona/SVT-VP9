@@ -9,7 +9,7 @@
  */
 
 #include <assert.h>
-#if defined(_MSC_VER)
+#if defined(_WIN32)
 #include <intrin.h>
 #endif
 #include <immintrin.h>

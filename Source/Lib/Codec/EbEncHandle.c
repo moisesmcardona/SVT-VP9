@@ -143,12 +143,12 @@ processorGroup                   lp_group[MAX_PROCESSOR_GROUP];
 * Instruction Set Support
 **************************************/
 #include <stdint.h>
-#if defined(_MSC_VER)
+#if defined(_WIN32)
 # include <intrin.h>
 #endif
 void run_cpuid(uint32_t eax, uint32_t ecx, int* abcd)
 {
-#if defined(_MSC_VER)
+#if defined(_WIN32)
     __cpuidex(abcd, eax, ecx);
 #else
     uint32_t ebx, edx;
@@ -166,7 +166,7 @@ void run_cpuid(uint32_t eax, uint32_t ecx, int* abcd)
 int check_xcr0_ymm()
 {
     uint32_t xcr0;
-#if defined(_MSC_VER)
+#if defined(_WIN32)
     xcr0 = (uint32_t)_xgetbv(0);  /* min VS2010 SP1 compiler is required */
 #else
     __asm__("xgetbv" : "=a" (xcr0) : "c" (0) : "%edx");
@@ -214,7 +214,7 @@ int check_xcr0_zmm()
 {
     uint32_t xcr0;
     uint32_t zmm_ymm_xmm = (7 << 5) | (1 << 2) | (1 << 1);
-#if defined(_MSC_VER)
+#if defined(_WIN32)
     xcr0 = (uint32_t)_xgetbv(0);  /* min VS2010 SP1 compiler is required */
 #else
     __asm__("xgetbv" : "=a" (xcr0) : "c" (0) : "%edx");
@@ -376,7 +376,7 @@ static uint32_t enc_dec_port_total_count(void)
 }
 
 EbErrorType init_thread_managment_params() {
-#ifdef _MSC_VER 
+#ifdef _WIN32 
     // Initialize group_affinity structure with Current thread info
     GetThreadGroupAffinity(GetCurrentThread(), &group_affinity);
     num_groups = (uint8_t)GetActiveProcessorGroupCount();
@@ -2982,10 +2982,7 @@ static EbErrorType init_svt_vp9_encoder_handle(
 #define sldebug_printf(...)
 #endif
 
-#ifndef _RSIZE_T_DEFINED
 typedef size_t Rsize;
-#define _RSIZE_T_DEFINED
-#endif  /* _RSIZE_T_DEFINED */
 
 #ifndef _ERRNO_T_DEFINED
 #define _ERRNO_T_DEFINED

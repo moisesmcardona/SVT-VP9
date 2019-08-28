@@ -50,7 +50,7 @@ extern "C" {
 #ifndef VPX_DEPRECATED
 #if defined(__GNUC__) && __GNUC__
 #define VPX_DEPRECATED __attribute__((deprecated))
-#elif defined(_MSC_VER)
+#elif defined(_WIN32)
 #define VPX_DEPRECATED
 #else
 #define VPX_DEPRECATED
@@ -60,7 +60,7 @@ extern "C" {
 #ifndef VPX_DECLSPEC_DEPRECATED
 #if defined(__GNUC__) && __GNUC__
 #define VPX_DECLSPEC_DEPRECATED /**< \copydoc #VPX_DEPRECATED */
-#elif defined(_MSC_VER)
+#elif defined(_WIN32)
 /*!\brief \copydoc #VPX_DEPRECATED */
 #define VPX_DECLSPEC_DEPRECATED __declspec(deprecated)
 #else

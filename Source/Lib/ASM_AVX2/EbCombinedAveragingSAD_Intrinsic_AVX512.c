@@ -5,7 +5,7 @@
 
 #include "EbDefinitions.h"
 #include "EbCombinedAveragingSAD_Intrinsic_AVX512.h"
-#ifdef _MSC_VER
+#ifdef _WIN32
 #include <intrin.h>
 #endif
 

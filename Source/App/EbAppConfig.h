@@ -15,19 +15,13 @@
 #define ftello64 ftell
 #endif
 // Define Cross-Platform 64-bit fseek() and ftell()
-#ifdef _MSC_VER
+#ifdef _WIN32
 typedef __int64 Off64;
 #define fseeko64 _fseeki64
 #define ftello64 _ftelli64
-
-#elif _WIN32 // MinGW
-
 #endif
 
-#ifndef _RSIZE_T_DEFINED
 typedef size_t Rsize;
-#define _RSIZE_T_DEFINED
-#endif  /* _RSIZE_T_DEFINED */
 
 #ifndef _ERRNO_T_DEFINED
 #define _ERRNO_T_DEFINED
@@ -158,7 +152,7 @@ extern Rsize strnlen_ss(const char *s, Rsize smax);
 #define MAX_CHANNEL_NUMBER      6
 #define MAX_NUM_TOKENS          200
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FOPEN(f,s,m) fopen_s(&f,s,m)
 #else
 #define FOPEN(f,s,m) f=fopen(s,m)

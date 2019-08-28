@@ -13,14 +13,14 @@
 
 #if (defined(__GNUC__) && __GNUC__) || defined(__SUNPRO_C)
 #define DECLARE_ALIGNED(n, typ, val) typ val __attribute__((aligned(n)))
-#elif defined(_MSC_VER)
+#elif defined(_WIN32)
 #define DECLARE_ALIGNED(n, typ, val) __declspec(align(n)) typ val
 #else
 #warning No alignment directives known for this compiler.
 #define DECLARE_ALIGNED(n, typ, val) typ val
 #endif
 
-#if HAVE_NEON && defined(_MSC_VER)
+#if HAVE_NEON && defined(_WIN32)
 #define __builtin_prefetch(x)
 #endif
 
